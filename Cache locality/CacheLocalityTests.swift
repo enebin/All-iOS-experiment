@@ -5,7 +5,7 @@ final class SpatialLocalityTests: XCTestCase {
     var array: [[Int]]!
     let numRows = 10_000
     let numColumns = 10_000
-
+    
     override func setUp() {
         super.setUp()
         array = Array(repeating: Array(repeating: 0, count: numColumns), count: numRows)
@@ -36,12 +36,11 @@ final class SpatialLocalityTests: XCTestCase {
         var current = CFAbsoluteTimeGetCurrent()
         accessArrayRowWise(array: &array)
         
-        print("Contagious caching: ", CFAbsoluteTimeGetCurrent() - current)
-        
+        print("Row wise: ", CFAbsoluteTimeGetCurrent() - current)
         
         current = CFAbsoluteTimeGetCurrent()
         accessArrayColumnWise(array: &array)
         
-        print("Uncontagious caching: ", CFAbsoluteTimeGetCurrent() - current)
+        print("Column wise: ", CFAbsoluteTimeGetCurrent() - current)
     }
 }
